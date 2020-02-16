@@ -12,21 +12,25 @@ class Application(Frame):
             widget.destroy()
         
     def main_account_screen(self):
-        Label(self, text = "Select either Register or Login", bg = "blue", width = "300", height = "2", font = ("Calibri", 15)).pack()
+        Label(self, text = "Select either Register or Login", bg = "dim gray", width = "300", height = "2", font = ("Calibri", 15)).pack()
+        for i in range(3):
+            Label(self, text = "").pack()
         Button(self, text = "Register", height = "2", width = "30", command = self.register).pack()
+        Label(self, text = "").pack()
         Button(self, text = "Login", height = "2", width = "30", command = self.login).pack()
         
     def register(self):
         self.register_screen = Toplevel(main_screen)
         self.register_screen.title("Register Window")
-        setup_screen(self.register_screen, 300, 300)
+        setup_screen(self.register_screen, 400, 250)
         self.username = StringVar(); self.password = StringVar()
-        Label(self.register_screen, text = "Please enter your details below.", bg = "blue").pack()
+        Label(self.register_screen, text = "Please enter your details below.", bg = "dim gray", width = "300", height = "2", font = ("Calibri", 12)).pack()
         Label(self.register_screen, text = "Username").pack()
         usernameEntry = Entry(self.register_screen, textvariable = self.username); usernameEntry.pack()
         Label(self.register_screen, text = "Password").pack()
         passwordEntry = Entry(self.register_screen, textvariable = self.password, show = "*"); passwordEntry.pack() # show has all the text show up as the value
-        Button(self.register_screen, text = "Register", width = 10, height = 1, bg = "blue", command = self.register_user).pack()
+        Label(self.register_screen, text = "").pack()
+        Button(self.register_screen, text = "Register", width = 10, height = 1, command = self.register_user).pack()
     
     def register_user(self):
         usernameInfo = self.username.get()
@@ -39,8 +43,8 @@ class Application(Frame):
         
     def login(self):
         self.login_screen = Toplevel(main_screen)
-        setup_screen(self.login_screen, 300, 300)
-        Label(self.login_screen, text = "Please enter your login credentials.").pack()
+        setup_screen(self.login_screen, 400, 250)
+        Label(self.login_screen, text = "Please enter your login credentials.", bg = "dim gray", width = "300", height = "2", font = ("Calibri", 12)).pack()
         self.usernameVerify = StringVar(); self.passwordVerify = StringVar()
         
         Label(self.login_screen, text = "Username").pack()
@@ -68,17 +72,18 @@ class Application(Frame):
     def login_success(self):
         popup_screen = Toplevel(main_screen)
         popup_screen.title("Success!")
-        setup_screen(popup_screen, 200, 100)
+        setup_screen(popup_screen, 150, 100)
         
         Label(popup_screen, text = "Login was successful.").pack()
         self.clear_window()
         Button(popup_screen, text = "Ok", command = popup_screen.destroy).pack()
         Label(self.login_screen, text = "Successful Login", fg = "green").pack()
-        
+        from webbrowser import open
+        open("https://youtu.be/6LvOiYONqXM?t=36")
     def invalid_password(self):
         popup_screen = Toplevel(main_screen)
         popup_screen.title("Invalid password")
-        setup_screen(popup_screen, 200, 100)
+        setup_screen(popup_screen, 150, 100)
         
         Label(popup_screen, text = "The entered password is invalid.").pack()
         Button(popup_screen, text = "Ok", command = popup_screen.destroy).pack()
@@ -86,7 +91,7 @@ class Application(Frame):
     def user_not_found(self):
         popup_screen = Toplevel(main_screen)
         popup_screen.title("User not found")
-        setup_screen(popup_screen, 200, 100)
+        setup_screen(popup_screen, 150, 100)
         
         Label(popup_screen, text = "User was not found.").pack()
         Button(popup_screen, text = "Ok", command = popup_screen.destroy).pack()
@@ -100,7 +105,7 @@ def setup_screen(screen_title, w, h):
     screen_title.geometry('%dx%d+%d+%d' % (w, h, x, y))
 
 main_screen = Tk()
-main_screen.title("Custom Application - Simple Login Gui with Encoding")
-setup_screen(main_screen, 500, 500)
+main_screen.title("Custom Application - Simple Login Gui")
+setup_screen(main_screen, 450, 450)
 app = Application(main_screen)
 main_screen.mainloop()
