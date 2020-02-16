@@ -52,7 +52,7 @@ class Application(Frame):
         
         Label(self.login_screen, text = "Password").pack()
         passwordEntry = Entry(self.login_screen, textvariable = self.passwordVerify, show = "*"); passwordEntry.pack()
-        
+        Label(self.login_screen, text = "").pack()
         Button(self.login_screen, text = "Login", width = 10, height = 1, command = self.login_verification).pack()
         
     def login_verification(self):
@@ -78,8 +78,8 @@ class Application(Frame):
         self.clear_window()
         Button(popup_screen, text = "Ok", command = popup_screen.destroy).pack()
         Label(self.login_screen, text = "Successful Login", fg = "green").pack()
-        from webbrowser import open
-        open("https://youtu.be/6LvOiYONqXM?t=36")
+        Label(self.login_sceen, text = "Very important data here.").pack()
+        
     def invalid_password(self):
         popup_screen = Toplevel(main_screen)
         popup_screen.title("Invalid password")
