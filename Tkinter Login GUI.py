@@ -1,5 +1,4 @@
-from tkinter import *; import os
-#import sys; sys.path.insert(1, 'C:\Users\William Grate\Desktop\Programming Projects\Python 3')
+from tkinter import *
 
 class Application(Frame):
     def __init__(self, master):
